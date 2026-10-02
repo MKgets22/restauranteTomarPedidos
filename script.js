@@ -1,50 +1,66 @@
+// DOM
+const contenedorEstado = document.getElementById("estado-servicio");
+const btnProcesar = document.getElementById("btn-procesar");
 
 // Funcion generica para simular el tiempo de preparacion y entrega de cada elemento
 const prepararYEntregar = (etapa, item, tiempo) => {
-    return new Promise((resolve,) => {
-        console.log(`[${etapa}] Preparando: "${item}"...`);
+    return new Promise((resolve) => {
+        contenedorEstado.innerHTML = `<strong>[${etapa}]</strong> Preparando: "${item}"...`;
+        
         setTimeout(() => {
-            console.log(`[${etapa}] "${item}" esta listo y ha sido entregado a la mesa.`);
+            contenedorEstado.innerHTML = `<strong>[${etapa}]</strong> "${item}" está listo y ha sido entregado a la mesa.`;
             resolve(item);
         }, tiempo);
     });
 };
 
-// --- FLUJO DE LA ORDEN SECUENCIAL ---
+  //FLUJO 
 
 async function procesarOrdenCompleta(orden) {
-    console.log("--- Iniciando el servicio de la orden completa ---");
+    btnProcesar.disabled = true; // Desactivar botón durante el proceso
+    contenedorEstado.innerHTML = "--- Iniciando el servicio de la orden completa ---";
 
     try {
-        //  bebida
+        // Pausa breve para mostrar el inicio del servicio
+        await new Promise(r => setTimeout(r, 1500));
+
+        // bebida
         if (orden.bebida) {
-            await prepararYEntregar("Bebida", orden.bebida, 1500); 
+            await prepararYEntregar("Bebida", orden.bebida, 2000); 
+            await new Promise(r => setTimeout(r, 1500)); 
         }
 
-        //  pizza
+        // pizza
         if (orden.pizza) {
             await prepararYEntregar("Plato Principal", orden.pizza, 3000); 
+            await new Promise(r => setTimeout(r, 1500)); 
         }
 
         // postre
         if (orden.postre) {
             await prepararYEntregar("Postre", orden.postre, 2000); 
+            await new Promise(r => setTimeout(r, 1500)); 
         }
 
-        // Al completar la entrega del ultimo platillo (el postre)
-        console.log("Orden completa entregada con exito.");
-        console.log("--- Fin del servicio de esta mesa ---");
+        contenedorEstado.innerHTML = `
+            Orden completa entregada con éxito. <br>
+            <span style="color: #5c1d24; font-weight: bold; margin-top: 5px; display: block;">--- Fin del servicio de esta mesa ---</span>
+        `;
 
     } catch (error) {
-        console.error(`Ocurrio un error en la entrega: ${error.message}`);
+        contenedorEstado.innerHTML = `Ocurrió un error en la entrega: ${error.message}`;
+    } finally {
+        btnProcesar.disabled = false; // Reactivar botón al terminar
     }
 }
 
-// --- EJECUTAR LA SIMULACION ---
+// SIMULACION 
 const miOrden = {
-    bebida: "Limonada Natural",
+    bebida: "papelon con limon",
     pizza: "Pizza Pepperoni con Extra Queso",
-    postre: "Tiramisu"
+    postre: "Marquesa de chocolate"
 };
 
-procesarOrdenCompleta(miOrden);
+btnProcesar.addEventListener("click", () => {
+    procesarOrdenCompleta(miOrden);
+});

@@ -1,0 +1,124 @@
+/* Estilo italiano: colores rústicos, elegantes y acogedores */
+:root {
+    --color-principal: #5c1d24; /* Burdeos / Vino tinto */
+    --color-secundario: #d4a373; /* Dorado tostado */
+    --color-fondo: #f9f6f0;     /* Blanco marfil / pergamino */
+    --color-texto: #2b2b2b;     /* Gris oscuro cálido */
+    --color-blanco: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.contenedor-principal {
+    width: 100%;
+    max-width: 550px;
+    background: var(--color-blanco);
+    border: 2px solid var(--color-secundario);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(92, 29, 36, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 25px 20px;
+    border-bottom: 4px solid var(--color-secundario);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--color-secundario);
+}
+
+.tarjeta-orden {
+    padding: 30px;
+    text-align: center;
+}
+
+.tarjeta-orden h2 {
+    color: var(--color-principal);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.estado-caja {
+    background-color: #fdfbf7;
+    border: 1px dashed var(--color-secundario);
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+    color: var(--color-texto);
+}
+
+.btn-italiano {
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn-italiano:hover {
+    background-color: #c28e5e;
+    color: var(--color-blanco);
+    transform: translateY(-2px);
+}
+
+.btn-italiano:active {
+    transform: translateY(0);
+}
+
+footer {
+    background-color: #f0ebe1;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.85rem;
+    border-top: 1px solid #e2dad0;
+}
+
+footer a {
+    color: var(--color-principal);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
