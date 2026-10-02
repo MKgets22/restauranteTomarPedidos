@@ -17,8 +17,8 @@ const prepararYEntregar = (etapa, item, tiempo) => {
   //FLUJO 
 
 async function procesarOrdenCompleta(orden) {
-    btnProcesar.disabled = true; // Desactivar botón durante el proceso
-    contenedorEstado.innerHTML = "--- Iniciando el servicio de la orden completa ---";
+    btnProcesar.disabled= true; // Desactivar botón durante el proceso
+    contenedorEstado.innerHTML = "Iniciando el servicio de la orden completa ";
 
     try {
         // Pausa breve para mostrar el inicio del servicio
